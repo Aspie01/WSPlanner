@@ -17,14 +17,15 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+    # No `environment: github-pages` block here on purpose. That block makes
+    # GitHub check the environment before scheduling a runner, and the
+    # environment does not exist until Pages has been enabled — so the job
+    # fails instantly with no logs on a repository that has never deployed.
+    # Leaving it out lets the job start and enable Pages itself, below.
     steps:
       - uses: actions/checkout@v4
       # No build step — the repository root is the site.
-      # enablement turns Pages on for the repository if it is not already,
-      # so a fresh clone of this repo deploys without visiting Settings first.
+      # enablement turns Pages on for the repository if it is not already.
       - uses: actions/configure-pages@v5
         with:
           enablement: true
