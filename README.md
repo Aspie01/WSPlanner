@@ -53,15 +53,22 @@ Data lives in the browser's local storage. Clearing website data, or switching p
 
 ## Hosting on GitHub Pages
 
-The repository root **is** the site, so there is nothing to build.
+Live at **https://aspie01.github.io/WSPlanner/**
 
-1. Push to `main`.
-2. Repository *Settings → Pages → Source*: **GitHub Actions**.
-   The included `.github/workflows/pages.yml` publishes the root on every push to `main`.
-3. The site appears at `https://<user>.github.io/<repo>/`.
+The repository root **is** the site, so there is nothing to build. Pushing to `main` runs
+`.github/workflows/pages.yml`, which enables Pages if needed and publishes the root — no settings
+to touch first. `.nojekyll` is present so the `js/` directory is served as-is.
 
-Deploying from a branch works just as well (*Source: Deploy from a branch → main → / (root)*) —
-`.nojekyll` is present so the `js/` directory is served as-is.
+Two things about that workflow are deliberate and easy to undo by accident:
+
+- **`configure-pages` sets `enablement: true`**, so a fresh fork deploys without anyone visiting
+  the settings page.
+- **The job has no `environment: github-pages` block.** That block makes GitHub check the
+  environment *before* allocating a runner, and the environment does not exist until Pages has been
+  enabled once — so on a repository that has never deployed, the job fails in about three seconds
+  with no runner and no step logs, which is a confusing thing to debug. Leaving it out lets the job
+  start and enable Pages itself. Once Pages is on you can add the block back for the deployment URL
+  in the Actions UI, but nothing needs it.
 
 ## Running it locally
 
