@@ -41,8 +41,11 @@ function defaultState() {
     v: SCHEMA_VERSION,
     profile: {
       playerName: '',
-      state: '',
+      // The state this planner was built for. Change it in Settings.
+      state: '3574',
       alliance: '',
+      // Server time as an offset from UTC. Most states run on UTC, but this is
+      // a guess until someone compares it against the in-game clock.
       serverOffsetMin: 0,
       furnaceLevel: '30',
       theme: 'dark',
