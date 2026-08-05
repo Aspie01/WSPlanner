@@ -17,11 +17,19 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # No `environment: github-pages` block here on purpose. That block makes
-    # GitHub check the environment before scheduling a runner, and the
-    # environment does not exist until Pages has been enabled — so the job
-    # fails instantly with no logs on a repository that has never deployed.
-    # Leaving it out lets the job start and enable Pages itself, below.
+    # Surfaces the deployed URL on the run page in the Actions UI.
+    #
+    # This block requires Pages to be enabled on the repository already: it
+    # makes GitHub check the environment BEFORE scheduling a runner, and the
+    # github-pages environment does not exist until Pages has been turned on
+    # once. On a repository that has never deployed, the job then fails in
+    # about three seconds with no runner assigned and no step logs at all,
+    # which is a thoroughly confusing thing to debug. If you fork this repo
+    # and hit that, delete these two lines, push once to let the
+    # configure-pages step below enable Pages, then put them back.
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       # No build step — the repository root is the site.

@@ -59,16 +59,15 @@ The repository root **is** the site, so there is nothing to build. Pushing to `m
 `.github/workflows/pages.yml`, which enables Pages if needed and publishes the root — no settings
 to touch first. `.nojekyll` is present so the `js/` directory is served as-is.
 
-Two things about that workflow are deliberate and easy to undo by accident:
+`configure-pages` sets `enablement: true`, so the workflow turns Pages on rather than relying on
+someone having done it by hand.
 
-- **`configure-pages` sets `enablement: true`**, so a fresh fork deploys without anyone visiting
-  the settings page.
-- **The job has no `environment: github-pages` block.** That block makes GitHub check the
-  environment *before* allocating a runner, and the environment does not exist until Pages has been
-  enabled once — so on a repository that has never deployed, the job fails in about three seconds
-  with no runner and no step logs, which is a confusing thing to debug. Leaving it out lets the job
-  start and enable Pages itself. Once Pages is on you can add the block back for the deployment URL
-  in the Actions UI, but nothing needs it.
+**If you fork this and the first deploy fails in about three seconds with no logs**, that is the
+`environment: github-pages` block in `pages.yml`. It makes GitHub check the environment *before*
+allocating a runner, and that environment does not exist until Pages has been enabled once — so the
+job never starts, `configure-pages` never gets to enable anything, and there are no step logs to
+explain it. Delete the block, push once to let the workflow enable Pages, then put it back. It is
+only there to show the deployed URL on the run page.
 
 ## Running it locally
 
