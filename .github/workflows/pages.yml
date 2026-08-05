@@ -23,7 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # No build step — the repository root is the site.
+      # enablement turns Pages on for the repository if it is not already,
+      # so a fresh clone of this repo deploys without visiting Settings first.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
