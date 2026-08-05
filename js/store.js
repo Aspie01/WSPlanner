@@ -44,8 +44,10 @@ function defaultState() {
       // The state this planner was built for. Change it in Settings.
       state: '3574',
       alliance: '',
-      // Server time as an offset from UTC. Most states run on UTC, but this is
-      // a guess until someone compares it against the in-game clock.
+      // Server time as an offset from UTC. The game runs on UTC across all
+      // states — event cooldowns and daily resets are documented as rolling
+      // over on UTC — so 0 is correct unless you deliberately want the
+      // schedule authored in some other zone.
       serverOffsetMin: 0,
       furnaceLevel: '30',
       theme: 'dark',

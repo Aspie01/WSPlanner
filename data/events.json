@@ -1,5 +1,5 @@
 {
-  "$comment": "Starter schedule. Times are SERVER time and are placeholders — every alliance and state runs its own timings, so edit these on the Event Calendar page.",
+  "$comment": "Starter schedule. Server time is UTC across all states. THE DAYS AND TIMES BELOW ARE PLACEHOLDERS, not a real schedule: alliance events are triggered by each alliance's own R4/R5, so they differ between alliances inside the same state, and which half of a biweekly cycle a state sits in varies per state. The authoritative source is the in-game Events calendar. Edit these on the Event Calendar page.",
   "events": [
     {
       "id": "ev_vsduel",
@@ -26,7 +26,7 @@
       "colorKey": "accent",
       "recurrence": { "type": "weekly", "days": [2, 5], "times": ["12:00"] },
       "durationMin": 30,
-      "notes": "Alliance-scheduled. Confirm days and times with your R4/R5."
+      "notes": "Set by your own R4/R5, not by the state — it runs on a ~47.5h cooldown after each hunt, so the alliance picks when to trigger it. Two fixed days a week is how most alliances actually run it, but replace these with whatever yours does. The hunt itself lasts 30 minutes."
     },
     {
       "id": "ev_joe",
