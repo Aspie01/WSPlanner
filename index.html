@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WS Planner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Planning tools for Whiteout Survival: VS Duel, alliance events, growth queue, resources and roster.">
+<meta name="theme-color" content="#0b1220">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WS Planner">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+  <a class="brand" href="#/">
+    <span class="brand-mark" aria-hidden="true">❄</span>
+    <span class="brand-text">WS&nbsp;Planner</span>
+  </a>
+  <div class="topbar-right">
+    <span class="clock" id="serverClock" title="Server time"></span>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="sidenav" id="sidenav" aria-label="Sections">
+    <a href="#/" data-route="">Dashboard</a>
+    <a href="#/vs-duel" data-route="vs-duel">VS Duel</a>
+    <a href="#/calendar" data-route="calendar">Event Calendar</a>
+    <a href="#/growth" data-route="growth">Growth Plan</a>
+    <a href="#/inventory" data-route="inventory">Resources</a>
+    <a href="#/roster" data-route="roster">Alliance Roster</a>
+    <div class="nav-sep"></div>
+    <a href="#/data" data-route="data">Game Data</a>
+    <a href="#/settings" data-route="settings">Settings &amp; Sharing</a>
+  </nav>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main class="main" id="view" tabindex="-1">
+    <div class="loading">Loading…</div>
+  </main>
+</div>
+
+<div class="toast-wrap" id="toasts" aria-live="polite"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

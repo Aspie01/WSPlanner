@@ -1,0 +1,125 @@
+{
+  "$comment": "Seed data for the VS Duel (Alliance Duel) week. Day themes are stable across patches; POINT VALUES ARE NOT VERIFIED and should be checked in-game, then corrected under Game Data.",
+  "sourceNote": "Community-reported values, unverified. Correct them under Game Data > VS Duel.",
+  "days": [
+    {
+      "n": 1,
+      "key": "radar",
+      "name": "Radar Training",
+      "summary": "Stamina, radar missions and hero progression. The cheapest day to score if you bank stamina and hero shards through the weekend.",
+      "bank": [
+        "Stamina (do not spend it Sunday — cap out and hold)",
+        "Hero shards and Widgets / recruitment tickets",
+        "Exploration and Intel (radar) missions left unclaimed"
+      ],
+      "scoring": [
+        { "id": "stamina", "label": "Stamina spent on radar / intel missions", "unit": "stamina", "points": 30, "verified": false },
+        { "id": "heroShard", "label": "Hero shard used", "unit": "shard", "points": 50, "verified": false },
+        { "id": "heroXp", "label": "Hero EXP used", "unit": "1,000 EXP", "points": 10, "verified": false }
+      ],
+      "tips": [
+        "Finish Sunday with full stamina and let it overflow into stored stamina items.",
+        "Hold Fire Crystal hero shards for Day 5 if your alliance is pushing Total Mobilization instead."
+      ]
+    },
+    {
+      "n": 2,
+      "key": "construction",
+      "name": "Base Expansion",
+      "summary": "Construction speedups and building power. Start a long upgrade Sunday night, then finish it with speedups on Monday.",
+      "bank": [
+        "Construction speedups and General speedups",
+        "One long building upgrade queued and ready to rush",
+        "Fire Crystals / Refined Fire Crystals for Furnace levels"
+      ],
+      "scoring": [
+        { "id": "buildMin", "label": "Construction speedup used", "unit": "minute", "points": 30, "verified": false },
+        { "id": "fireCrystal", "label": "Fire Crystal used", "unit": "crystal", "points": 300, "verified": false },
+        { "id": "power", "label": "Building power gained", "unit": "power", "points": 1, "verified": false }
+      ],
+      "tips": [
+        "Points come from the speedups you *use*, so queue the upgrade first and rush it during the day.",
+        "Do not let a big upgrade complete on its own overnight — that power lands outside the scoring window."
+      ]
+    },
+    {
+      "n": 3,
+      "key": "research",
+      "name": "Age of Science",
+      "summary": "Research speedups and research power. Same trick as Day 2 — have an expensive research queued and waiting.",
+      "bank": [
+        "Research speedups and General speedups",
+        "A long research queued the night before",
+        "Fire Crystals if your alliance counts them here"
+      ],
+      "scoring": [
+        { "id": "researchMin", "label": "Research speedup used", "unit": "minute", "points": 30, "verified": false },
+        { "id": "power", "label": "Research power gained", "unit": "power", "points": 1, "verified": false }
+      ],
+      "tips": [
+        "Growth tree research is usually cheaper per point than Battle tree research.",
+        "If you only have General speedups, spend them on whichever of Day 2 / 3 / 4 your alliance most needs."
+      ]
+    },
+    {
+      "n": 4,
+      "key": "training",
+      "name": "Train Troops",
+      "summary": "Training speedups and troop promotion. Usually the easiest day to hit a high personal score.",
+      "bank": [
+        "Training speedups and General speedups",
+        "A full training queue started before reset",
+        "Resources for troop promotion"
+      ],
+      "scoring": [
+        { "id": "trainMin", "label": "Training speedup used", "unit": "minute", "points": 30, "verified": false },
+        { "id": "promote", "label": "Troop promoted", "unit": "troop", "points": 0, "verified": false }
+      ],
+      "tips": [
+        "Promoting existing troops usually scores far better per resource than training new ones.",
+        "Keep your troop queue full and rush it repeatedly rather than in one batch."
+      ]
+    },
+    {
+      "n": 5,
+      "key": "mobilization",
+      "name": "Total Mobilization",
+      "summary": "Everything counts — speedups of all kinds, hero gear, chief gear and chief charms. The heaviest scoring day, and the one worth saving for.",
+      "bank": [
+        "Any speedups left over from Days 2–4",
+        "Hero gear plates and Essence Stones",
+        "Chief Gear materials and Chief Charm materials",
+        "Fire Crystals and Refined Fire Crystals"
+      ],
+      "scoring": [
+        { "id": "anyMin", "label": "Any speedup used", "unit": "minute", "points": 30, "verified": false },
+        { "id": "chiefGear", "label": "Chief Gear material used", "unit": "material", "points": 0, "verified": false },
+        { "id": "charm", "label": "Chief Charm material used", "unit": "material", "points": 0, "verified": false },
+        { "id": "heroGear", "label": "Hero Gear upgrade", "unit": "upgrade", "points": 0, "verified": false }
+      ],
+      "tips": [
+        "Chief Gear and Chief Charm upgrades are typically the highest-value single actions of the whole week.",
+        "Ask your R4/R5 whether the alliance is contesting this day before you dump everything into it."
+      ]
+    },
+    {
+      "n": 6,
+      "key": "enemybuster",
+      "name": "Enemy Buster",
+      "summary": "Killing enemy troops, rallies and healing. Points come from combat, so this day is coordinated, not solo.",
+      "bank": [
+        "Healing speedups and healing resources",
+        "Full march queues and rally capacity",
+        "Hero stamina / rally slots for your rally leads"
+      ],
+      "scoring": [
+        { "id": "kills", "label": "Enemy troop killed", "unit": "troop", "points": 0, "verified": false },
+        { "id": "healMin", "label": "Healing speedup used", "unit": "minute", "points": 30, "verified": false }
+      ],
+      "tips": [
+        "Follow your alliance's call — solo attacking on this day usually just feeds the other side points.",
+        "Heal during the scoring window, not after it closes."
+      ]
+    }
+  ]
+}

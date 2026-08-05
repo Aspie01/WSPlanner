@@ -1,0 +1,30 @@
+{
+  "$comment": "Troop types and tiers. Per-troop training and promotion costs ship empty — fill in the tiers you are working on under Game Data > Troops.",
+  "resourceKeys": ["meat", "wood", "coal", "iron", "steel"],
+  "types": [
+    { "key": "infantry", "name": "Infantry", "role": "Front line — soaks damage, protects the rest of the march." },
+    { "key": "lancer", "name": "Lancer", "role": "Counters marksmen, breaks through the enemy front." },
+    { "key": "marksman", "name": "Marksman", "role": "Damage from the back line — the reason rallies hit hard." }
+  ],
+  "tiers": [
+    { "tier": 1, "name": "T1" },
+    { "tier": 2, "name": "T2" },
+    { "tier": 3, "name": "T3" },
+    { "tier": 4, "name": "T4" },
+    { "tier": 5, "name": "T5" },
+    { "tier": 6, "name": "T6" },
+    { "tier": 7, "name": "T7" },
+    { "tier": 8, "name": "T8" },
+    { "tier": 9, "name": "T9" },
+    { "tier": 10, "name": "T10" },
+    { "tier": 11, "name": "T11" }
+  ],
+  "entries": [],
+  "entrySchema": {
+    "key": "e.g. infantry_t9",
+    "type": "infantry | lancer | marksman",
+    "tier": "number",
+    "mode": "train | promote",
+    "perUnit": { "resources": "object of resourceKey -> amount for ONE troop", "timeMin": "minutes for ONE troop" }
+  }
+}

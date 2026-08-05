@@ -1,0 +1,26 @@
+{
+  "$comment": "Building catalogue. Names and level ranges are stable; COST TABLES SHIP EMPTY on purpose — upgrade costs change with patches and are not worth guessing. Fill them in under Game Data > Buildings (or use a Custom entry on the Growth Plan for a one-off).",
+  "resourceKeys": ["meat", "wood", "coal", "iron", "steel"],
+  "entries": [
+    { "key": "furnace", "name": "Furnace", "maxLevel": 30, "note": "Beyond 30 the Furnace goes into Fire Crystal levels (FC1–FC10), which cost Fire Crystals as well as resources.", "levels": [] },
+    { "key": "embassy", "name": "Embassy", "maxLevel": 30, "levels": [] },
+    { "key": "command", "name": "Command Center", "maxLevel": 30, "levels": [] },
+    { "key": "research", "name": "Research Center", "maxLevel": 30, "levels": [] },
+    { "key": "infirmary", "name": "Infirmary", "maxLevel": 30, "levels": [] },
+    { "key": "waracademy", "name": "War Academy", "maxLevel": 30, "levels": [] },
+    { "key": "infantry", "name": "Infantry Camp", "maxLevel": 30, "levels": [] },
+    { "key": "lancer", "name": "Lancer Camp", "maxLevel": 30, "levels": [] },
+    { "key": "marksman", "name": "Marksman Camp", "maxLevel": 30, "levels": [] },
+    { "key": "storehouse", "name": "Storehouse", "maxLevel": 30, "levels": [] },
+    { "key": "cookhouse", "name": "Cookhouse", "maxLevel": 30, "levels": [] },
+    { "key": "sawmill", "name": "Sawmill", "maxLevel": 30, "levels": [] },
+    { "key": "coalmine", "name": "Coal Mine", "maxLevel": 30, "levels": [] },
+    { "key": "ironmine", "name": "Iron Mine", "maxLevel": 30, "levels": [] }
+  ],
+  "levelSchema": {
+    "level": "number — the level you arrive at",
+    "resources": "object of resourceKey -> amount, e.g. { \"meat\": 12500000, \"wood\": 12500000 }",
+    "timeMin": "number — build time in minutes, before any speed bonuses",
+    "power": "number (optional) — power gained, used by the VS Duel points estimate"
+  }
+}

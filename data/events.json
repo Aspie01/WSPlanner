@@ -1,0 +1,87 @@
+{
+  "$comment": "Starter schedule. Times are SERVER time and are placeholders — every alliance and state runs its own timings, so edit these on the Event Calendar page.",
+  "events": [
+    {
+      "id": "ev_vsduel",
+      "name": "VS Duel",
+      "kind": "state",
+      "colorKey": "accent",
+      "recurrence": { "type": "weekly", "days": [1, 2, 3, 4, 5, 6], "times": ["00:00"] },
+      "durationMin": 1440,
+      "notes": "Mon–Sat. Day themes and scoring are on the VS Duel page."
+    },
+    {
+      "id": "ev_svs",
+      "name": "State vs State (SvS)",
+      "kind": "state",
+      "colorKey": "warm",
+      "recurrence": { "type": "cycle", "periodDays": 14, "anchorDate": "2026-08-03", "times": ["00:00"] },
+      "durationMin": 8640,
+      "notes": "Set anchorDate to the first day of any SvS prep week you remember, then the cycle lines up."
+    },
+    {
+      "id": "ev_bear",
+      "name": "Bear Trap",
+      "kind": "alliance",
+      "colorKey": "accent",
+      "recurrence": { "type": "weekly", "days": [2, 5], "times": ["12:00"] },
+      "durationMin": 30,
+      "notes": "Alliance-scheduled. Confirm days and times with your R4/R5."
+    },
+    {
+      "id": "ev_joe",
+      "name": "Crazy Joe",
+      "kind": "alliance",
+      "colorKey": "warm",
+      "recurrence": { "type": "weekly", "days": [3], "times": ["14:00"] },
+      "durationMin": 60,
+      "notes": "Keep troops in the city and shields ready for the final wave."
+    },
+    {
+      "id": "ev_foundry",
+      "name": "Foundry Battle",
+      "kind": "alliance",
+      "colorKey": "accent",
+      "recurrence": { "type": "weekly", "days": [6], "times": ["19:00"] },
+      "durationMin": 60,
+      "notes": "Alliance vs alliance. Rally leads should be online 15 minutes early."
+    },
+    {
+      "id": "ev_canyon",
+      "name": "Canyon Clash",
+      "kind": "alliance",
+      "colorKey": "accent",
+      "recurrence": { "type": "weekly", "days": [0], "times": ["19:00"] },
+      "durationMin": 60,
+      "notes": "Check whether your alliance has signed up before the deadline."
+    },
+    {
+      "id": "ev_frostdragon",
+      "name": "Frostdragon Tyrant",
+      "kind": "alliance",
+      "colorKey": "warm",
+      "recurrence": { "type": "weekly", "days": [4], "times": ["12:00"] },
+      "durationMin": 60,
+      "notes": "Bring your best marksman heroes."
+    },
+    {
+      "id": "ev_mobilization",
+      "name": "Alliance Mobilization",
+      "kind": "alliance",
+      "colorKey": "good",
+      "recurrence": { "type": "weekly", "days": [1], "times": ["00:00"] },
+      "durationMin": 4320,
+      "notes": "Take the tasks you can actually finish — refreshing costs the alliance nothing but time."
+    },
+    {
+      "id": "ev_reset",
+      "name": "Daily reset",
+      "kind": "daily",
+      "colorKey": "muted",
+      "recurrence": { "type": "daily", "times": ["00:00"] },
+      "durationMin": 0,
+      "enabled": false,
+      "notes": "Daily missions, free chest, hero recruitment and alliance help all roll over. Off by default — switch it on if you want the countdown."
+    }
+  ]
+}

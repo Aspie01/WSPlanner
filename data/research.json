@@ -1,0 +1,33 @@
+{
+  "$comment": "Research catalogue. Node names follow the in-game Research Center tabs; COST TABLES SHIP EMPTY — fill in the nodes you actually care about under Game Data > Research.",
+  "resourceKeys": ["meat", "wood", "coal", "iron", "steel"],
+  "trees": [
+    {
+      "key": "growth",
+      "name": "Growth",
+      "entries": [
+        { "key": "construction_speed", "name": "Construction Speed", "maxLevel": 10, "levels": [] },
+        { "key": "research_speed", "name": "Research Speed", "maxLevel": 10, "levels": [] },
+        { "key": "training_speed", "name": "Training Speed", "maxLevel": 10, "levels": [] },
+        { "key": "training_capacity", "name": "Training Capacity", "maxLevel": 10, "levels": [] },
+        { "key": "gathering_speed", "name": "Gathering Speed", "maxLevel": 10, "levels": [] },
+        { "key": "march_capacity", "name": "March Capacity", "maxLevel": 10, "levels": [] },
+        { "key": "healing_speed", "name": "Healing Speed", "maxLevel": 10, "levels": [] }
+      ]
+    },
+    {
+      "key": "battle",
+      "name": "Battle",
+      "entries": [
+        { "key": "infantry_attack", "name": "Infantry Attack", "maxLevel": 10, "levels": [] },
+        { "key": "infantry_defense", "name": "Infantry Defense", "maxLevel": 10, "levels": [] },
+        { "key": "lancer_attack", "name": "Lancer Attack", "maxLevel": 10, "levels": [] },
+        { "key": "lancer_defense", "name": "Lancer Defense", "maxLevel": 10, "levels": [] },
+        { "key": "marksman_attack", "name": "Marksman Attack", "maxLevel": 10, "levels": [] },
+        { "key": "marksman_defense", "name": "Marksman Defense", "maxLevel": 10, "levels": [] },
+        { "key": "troop_health", "name": "Troop Health", "maxLevel": 10, "levels": [] },
+        { "key": "troop_lethality", "name": "Troop Lethality", "maxLevel": 10, "levels": [] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WS Planner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16263f"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g stroke="#5fd4ff" stroke-width="26" stroke-linecap="round" transform="translate(256 256)">
+    <g id="spoke">
+      <line x1="0" y1="-150" x2="0" y2="150"/>
+      <line x1="0" y1="-150" x2="-46" y2="-104"/>
+      <line x1="0" y1="-150" x2="46" y2="-104"/>
+      <line x1="0" y1="-80" x2="-38" y2="-42"/>
+      <line x1="0" y1="-80" x2="38" y2="-42"/>
+      <line x1="0" y1="150" x2="-46" y2="104"/>
+      <line x1="0" y1="150" x2="46" y2="104"/>
+      <line x1="0" y1="80" x2="-38" y2="42"/>
+      <line x1="0" y1="80" x2="38" y2="42"/>
+    </g>
+    <use href="#spoke" transform="rotate(60)"/>
+    <use href="#spoke" transform="rotate(120)"/>
+  </g>
+</svg>
