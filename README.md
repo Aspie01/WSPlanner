@@ -62,12 +62,15 @@ to touch first. `.nojekyll` is present so the `js/` directory is served as-is.
 `configure-pages` sets `enablement: true`, so the workflow turns Pages on rather than relying on
 someone having done it by hand.
 
-**If you fork this and the first deploy fails in about three seconds with no logs**, that is the
-`environment: github-pages` block in `pages.yml`. It makes GitHub check the environment *before*
-allocating a runner, and that environment does not exist until Pages has been enabled once — so the
-job never starts, `configure-pages` never gets to enable anything, and there are no step logs to
-explain it. Delete the block, push once to let the workflow enable Pages, then put it back. It is
-only there to show the deployed URL on the run page.
+**The workflow deliberately has no `environment: github-pages` block**, and adding one back breaks
+it. That block makes GitHub check the environment *before* allocating a runner; here the check
+rejects the job, which then fails in about two seconds with no runner and no step logs at all —
+nothing runs, and there is nothing to read afterwards. It was tried twice, including after Pages
+was enabled with the source set to GitHub Actions, and failed identically both times.
+
+All it would buy is the deployed URL displayed on the run page. `actions/deploy-pages` does not
+need it. If a deploy ever fails in a couple of seconds with no logs, this is the first thing to
+check.
 
 ## Running it locally
 
