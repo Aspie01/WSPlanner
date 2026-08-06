@@ -97,6 +97,10 @@ function renderLevelEditor(host, ctx, sectionKey) {
 
   const treeKey = trees?.[0]?.key;
   host.innerHTML = `
+    ${data?.namesVerified === false ? `<div class="note"><strong>These node names are not confirmed.</strong>
+      The three trees and their level caps were checked, but the individual entries are placeholders so the Growth Plan
+      has something to pick from. Rename them to match your Research Center, or delete the ones you never touch.
+      ${esc(data.levelNote || '')}</div>` : ''}
     <div class="grid ${trees ? 'cols-3' : 'cols-2'}">
       ${trees ? `<div class="field"><label>Tree</label><select id="treeSel">
         ${trees.map((t) => `<option value="${esc(t.key)}">${esc(t.name)}</option>`).join('')}</select></div>` : ''}

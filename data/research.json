@@ -1,32 +1,44 @@
 {
-  "$comment": "Research catalogue. Node names follow the in-game Research Center tabs; COST TABLES SHIP EMPTY — fill in the nodes you actually care about under Game Data > Research.",
-  "resourceKeys": ["meat", "wood", "coal", "iron", "steel"],
+  "$comment": "Research Center catalogue. The three tree names and their level caps are checked against a community wiki. THE INDIVIDUAL NODE NAMES BELOW ARE NOT CONFIRMED — they are plausible placeholders so the Growth Plan has something to pick from. Rename them to match your Research Center, or delete the ones you never touch. Cost tables ship empty; fill in only the nodes you are working towards.",
+  "namesVerified": false,
+  "resourceKeys": ["meat", "wood", "coal", "iron"],
+  "levelNote": "Caps vary by node. Growth research generally runs to level VII, Battle and Economy to level VI. There are also separate top-tier troop trees (T11 and T12) that go further; add those here as entries if you are working on them.",
   "trees": [
     {
       "key": "growth",
       "name": "Growth",
+      "maxLevel": 7,
       "entries": [
-        { "key": "construction_speed", "name": "Construction Speed", "maxLevel": 10, "levels": [] },
-        { "key": "research_speed", "name": "Research Speed", "maxLevel": 10, "levels": [] },
-        { "key": "training_speed", "name": "Training Speed", "maxLevel": 10, "levels": [] },
-        { "key": "training_capacity", "name": "Training Capacity", "maxLevel": 10, "levels": [] },
-        { "key": "gathering_speed", "name": "Gathering Speed", "maxLevel": 10, "levels": [] },
-        { "key": "march_capacity", "name": "March Capacity", "maxLevel": 10, "levels": [] },
-        { "key": "healing_speed", "name": "Healing Speed", "maxLevel": 10, "levels": [] }
+        { "key": "construction_speed", "name": "Construction Speed", "maxLevel": 7, "levels": [] },
+        { "key": "research_speed", "name": "Research Speed", "maxLevel": 7, "levels": [] },
+        { "key": "training_speed", "name": "Training Speed", "maxLevel": 7, "levels": [] },
+        { "key": "training_capacity", "name": "Training Capacity", "maxLevel": 7, "levels": [] },
+        { "key": "healing_speed", "name": "Healing Speed", "maxLevel": 7, "levels": [] }
       ]
     },
     {
       "key": "battle",
       "name": "Battle",
+      "maxLevel": 6,
       "entries": [
-        { "key": "infantry_attack", "name": "Infantry Attack", "maxLevel": 10, "levels": [] },
-        { "key": "infantry_defense", "name": "Infantry Defense", "maxLevel": 10, "levels": [] },
-        { "key": "lancer_attack", "name": "Lancer Attack", "maxLevel": 10, "levels": [] },
-        { "key": "lancer_defense", "name": "Lancer Defense", "maxLevel": 10, "levels": [] },
-        { "key": "marksman_attack", "name": "Marksman Attack", "maxLevel": 10, "levels": [] },
-        { "key": "marksman_defense", "name": "Marksman Defense", "maxLevel": 10, "levels": [] },
-        { "key": "troop_health", "name": "Troop Health", "maxLevel": 10, "levels": [] },
-        { "key": "troop_lethality", "name": "Troop Lethality", "maxLevel": 10, "levels": [] }
+        { "key": "infantry_attack", "name": "Infantry Attack", "maxLevel": 6, "levels": [] },
+        { "key": "infantry_defense", "name": "Infantry Defense", "maxLevel": 6, "levels": [] },
+        { "key": "lancer_attack", "name": "Lancer Attack", "maxLevel": 6, "levels": [] },
+        { "key": "lancer_defense", "name": "Lancer Defense", "maxLevel": 6, "levels": [] },
+        { "key": "marksman_attack", "name": "Marksman Attack", "maxLevel": 6, "levels": [] },
+        { "key": "marksman_defense", "name": "Marksman Defense", "maxLevel": 6, "levels": [] },
+        { "key": "troop_health", "name": "Troop Health", "maxLevel": 6, "levels": [] },
+        { "key": "troop_lethality", "name": "Troop Lethality", "maxLevel": 6, "levels": [] }
+      ]
+    },
+    {
+      "key": "economy",
+      "name": "Economy",
+      "maxLevel": 6,
+      "entries": [
+        { "key": "gathering_speed", "name": "Gathering Speed", "maxLevel": 6, "levels": [] },
+        { "key": "march_capacity", "name": "March Capacity", "maxLevel": 6, "levels": [] },
+        { "key": "resource_production", "name": "Resource Production", "maxLevel": 6, "levels": [] }
       ]
     }
   ]

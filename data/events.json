@@ -1,9 +1,14 @@
 {
-  "$comment": "Server time is UTC across all states. The four rotating events below are taken from the official August 2026 in-game calendar and are on a 28-day cycle, each starting Monday 00:00 and running seven days to the end of the following Sunday. The alliance-run events further down are NOT state-wide — each alliance's R4/R5 triggers those, so their days and times are placeholders you should replace. The in-game Events calendar is always authoritative.",
+  "$comment": "Server time is UTC across all states. The four rotating events are taken from the official August 2026 in-game calendar: a 28-day cycle, each starting Monday 00:00 and running seven days. Everything below them is marked PLACEHOLDER — those are triggered per alliance or per season, so their days and times differ between alliances inside one state and you should replace them. Event names, durations and frequencies are checked against community wikis; the specific days and times are not. The in-game Events calendar is always authoritative.",
   "rotation": {
     "periodDays": 28,
     "startsOn": "Monday",
-    "order": ["Alliance Mobilization", "State of Power", "Alliance Showdown", "King of Icefield"],
+    "order": [
+      "Alliance Mobilization",
+      "State of Power",
+      "Alliance Showdown",
+      "King of Icefield"
+    ],
     "note": "Anchored to the August 2026 calendar. Century Games shifts the order occasionally, so re-check against an in-game month view if the app starts disagreeing with the game."
   },
   "events": [
@@ -11,7 +16,14 @@
       "id": "ev_mobilization",
       "name": "Alliance Mobilization",
       "kind": "state",
-      "recurrence": { "type": "cycle", "periodDays": 28, "anchorDate": "2026-08-03", "times": ["00:00"] },
+      "recurrence": {
+        "type": "cycle",
+        "periodDays": 28,
+        "anchorDate": "2026-08-03",
+        "times": [
+          "00:00"
+        ]
+      },
       "durationMin": 10080,
       "notes": "Week 1 of 4. Take tasks you can actually finish — a task you abandon is one the alliance does not score."
     },
@@ -19,15 +31,29 @@
       "id": "ev_sop",
       "name": "State of Power",
       "kind": "state",
-      "recurrence": { "type": "cycle", "periodDays": 28, "anchorDate": "2026-08-10", "times": ["00:00"] },
+      "recurrence": {
+        "type": "cycle",
+        "periodDays": 28,
+        "anchorDate": "2026-08-10",
+        "times": [
+          "00:00"
+        ]
+      },
       "durationMin": 10080,
-      "notes": "Week 2 of 4. This is the week the day-by-day scoring themes on the VS Duel page apply to — bank speedups, gear and hero material in the three weeks leading up to it."
+      "notes": "Week 2 of 4. This is the week the day-by-day scoring themes on the Scoring Week page apply to — bank speedups, gear and hero material in the three weeks leading up to it."
     },
     {
       "id": "ev_showdown",
       "name": "Alliance Showdown",
       "kind": "state",
-      "recurrence": { "type": "cycle", "periodDays": 28, "anchorDate": "2026-08-17", "times": ["00:00"] },
+      "recurrence": {
+        "type": "cycle",
+        "periodDays": 28,
+        "anchorDate": "2026-08-17",
+        "times": [
+          "00:00"
+        ]
+      },
       "durationMin": 10080,
       "notes": "Week 3 of 4. Alliance versus alliance — follow your R4/R5's calls rather than acting solo."
     },
@@ -35,16 +61,31 @@
       "id": "ev_koi",
       "name": "King of Icefield",
       "kind": "state",
-      "recurrence": { "type": "cycle", "periodDays": 28, "anchorDate": "2026-08-24", "times": ["00:00"] },
+      "recurrence": {
+        "type": "cycle",
+        "periodDays": 28,
+        "anchorDate": "2026-08-24",
+        "times": [
+          "00:00"
+        ]
+      },
       "durationMin": 10080,
       "notes": "Week 4 of 4."
     },
-
     {
       "id": "ev_bear",
       "name": "Bear Trap",
       "kind": "alliance",
-      "recurrence": { "type": "weekly", "days": [2, 5], "times": ["12:00"] },
+      "recurrence": {
+        "type": "weekly",
+        "days": [
+          2,
+          5
+        ],
+        "times": [
+          "12:00"
+        ]
+      },
       "durationMin": 30,
       "notes": "PLACEHOLDER — set by your own R4/R5, not by the state. It runs on a ~47.5h cooldown after each hunt, so the alliance picks when to trigger it. Two fixed days a week is how most alliances run it in practice. The hunt itself lasts 30 minutes."
     },
@@ -52,23 +93,63 @@
       "id": "ev_joe",
       "name": "Crazy Joe",
       "kind": "alliance",
-      "recurrence": { "type": "weekly", "days": [3], "times": ["14:00"] },
-      "durationMin": 60,
-      "notes": "PLACEHOLDER — confirm the day and time in game. Keep troops in the city and a shield ready for the final wave."
+      "recurrence": {
+        "type": "weekly",
+        "days": [
+          3
+        ],
+        "times": [
+          "14:00"
+        ]
+      },
+      "durationMin": 40,
+      "notes": "PLACEHOLDER day/time — confirm in game. Twenty waves of bandits against your city and the Alliance HQ, about 40 minutes. Keep troops in the city and a shield ready for the last wave."
+    },
+    {
+      "id": "ev_fortress",
+      "name": "Fortress Battles",
+      "kind": "alliance",
+      "recurrence": {
+        "type": "weekly",
+        "days": [
+          5
+        ],
+        "times": [
+          "19:00"
+        ]
+      },
+      "durationMin": 120,
+      "notes": "PLACEHOLDER time — runs on Fridays during an eight-week season, over 12 Fortresses and 4 Strongholds. An alliance must hold a building for 30 unbroken minutes inside the two-hour window to take it. Turn this off between seasons."
     },
     {
       "id": "ev_foundry",
       "name": "Foundry Battle",
       "kind": "alliance",
-      "recurrence": { "type": "weekly", "days": [6], "times": ["19:00"] },
+      "recurrence": {
+        "type": "weekly",
+        "days": [
+          6
+        ],
+        "times": [
+          "19:00"
+        ]
+      },
       "durationMin": 60,
-      "notes": "PLACEHOLDER — alternates fortnightly with Frostfire Mine, and which half of the cycle your state is in shows only in game. Rally leads should be online 15 minutes early."
+      "notes": "PLACEHOLDER day/time — alternates fortnightly with Frostfire Mine, and which half of the cycle your state is on shows only in game. Rally leads should be online early."
     },
     {
       "id": "ev_frostfire",
       "name": "Frostfire Mine",
       "kind": "alliance",
-      "recurrence": { "type": "weekly", "days": [6], "times": ["19:00"] },
+      "recurrence": {
+        "type": "weekly",
+        "days": [
+          6
+        ],
+        "times": [
+          "19:00"
+        ]
+      },
       "durationMin": 60,
       "enabled": false,
       "notes": "PLACEHOLDER, off by default — alternates fortnightly with Foundry Battle. Switch this on and Foundry off in the weeks it runs, or set both to a 14-day cycle once you know which week your state is on."
@@ -77,24 +158,43 @@
       "id": "ev_frostdragon",
       "name": "Frostdragon Tyrant",
       "kind": "alliance",
-      "recurrence": { "type": "weekly", "days": [4], "times": ["12:00"] },
-      "durationMin": 60,
-      "notes": "PLACEHOLDER — confirm with your alliance. Bring your best marksman heroes."
+      "recurrence": {
+        "type": "cycle",
+        "periodDays": 28,
+        "anchorDate": "2026-08-06",
+        "times": [
+          "12:00"
+        ]
+      },
+      "durationMin": 360,
+      "notes": "PLACEHOLDER date/time — a monthly cross-alliance fight for the Capital lasting about six hours. Set the anchor date to one you have actually seen it run."
     },
     {
       "id": "ev_canyon",
       "name": "Canyon Clash",
       "kind": "alliance",
-      "recurrence": { "type": "weekly", "days": [0], "times": ["19:00"] },
+      "recurrence": {
+        "type": "cycle",
+        "periodDays": 28,
+        "anchorDate": "2026-08-09",
+        "times": [
+          "19:00"
+        ]
+      },
       "durationMin": 60,
       "enabled": false,
-      "notes": "PLACEHOLDER, off by default — only the top alliances in the state by power qualify, so switch it on if yours does."
+      "notes": "PLACEHOLDER date/time, off by default — a monthly cross-state fight between three alliances for the Lost Canyon, 60 minutes, using a fuel system where moving, attacking, healing and reviving all cost fuel. Switch it on if your alliance takes part."
     },
     {
       "id": "ev_reset",
       "name": "Daily reset",
       "kind": "daily",
-      "recurrence": { "type": "daily", "times": ["00:00"] },
+      "recurrence": {
+        "type": "daily",
+        "times": [
+          "00:00"
+        ]
+      },
       "durationMin": 0,
       "enabled": false,
       "notes": "Daily missions, free chest, hero recruitment and alliance help all roll over at 00:00 UTC. Off by default — switch it on if you want the countdown."

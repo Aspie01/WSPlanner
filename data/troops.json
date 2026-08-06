@@ -1,9 +1,10 @@
 {
-  "$comment": "Troop types and tiers. Per-troop training and promotion costs ship empty — fill in the tiers you are working on under Game Data > Troops.",
-  "resourceKeys": ["meat", "wood", "coal", "iron", "steel"],
+  "$comment": "Troop types and tiers. Tiers 1–10 come from upgrading the matching camp; the top tiers are unlocked by War Academy research instead, and not every state has them yet — delete the ones yours cannot train. Per-troop costs ship empty; fill in the tiers you are working on, or use a Custom step on the Growth Plan.",
+  "resourceKeys": ["meat", "wood", "coal", "iron"],
+  "fireCrystalNote": "Once the state reaches the Age of Fire Crystal and the camp passes level 30, troops become Fire Crystal versions of the same tier — a T9 becomes an FC T9, with better base stats. Two Fire Crystal skills unlock along the way, around FC3 and FC8.",
   "types": [
-    { "key": "infantry", "name": "Infantry", "role": "Front line — soaks damage, protects the rest of the march." },
-    { "key": "lancer", "name": "Lancer", "role": "Counters marksmen, breaks through the enemy front." },
+    { "key": "infantry", "name": "Infantry", "role": "Front line — soaks damage and protects the rest of the march." },
+    { "key": "lancer", "name": "Lancer", "role": "Counters marksmen and breaks through the enemy front." },
     { "key": "marksman", "name": "Marksman", "role": "Damage from the back line — the reason rallies hit hard." }
   ],
   "tiers": [
@@ -17,7 +18,8 @@
     { "tier": 8, "name": "T8" },
     { "tier": 9, "name": "T9" },
     { "tier": 10, "name": "T10" },
-    { "tier": 11, "name": "T11" }
+    { "tier": 11, "name": "T11", "note": "Unlocked by War Academy research rather than camp level." },
+    { "tier": 12, "name": "T12", "note": "Newer top tier — remove this if your state does not have it." }
   ],
   "entries": [],
   "entrySchema": {

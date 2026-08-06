@@ -6,14 +6,13 @@ import { uid } from './util.js';
 const KEY = 'wsplanner.state';
 export const SCHEMA_VERSION = 1;
 
-export const RESOURCE_KEYS = ['meat', 'wood', 'coal', 'iron', 'steel', 'fireCrystal', 'refinedCrystal'];
+export const RESOURCE_KEYS = ['meat', 'wood', 'coal', 'iron', 'fireCrystal', 'refinedCrystal'];
 
 export const RESOURCE_LABELS = {
   meat: 'Meat',
   wood: 'Wood',
   coal: 'Coal',
   iron: 'Iron',
-  steel: 'Steel',
   fireCrystal: 'Fire Crystals',
   refinedCrystal: 'Refined Fire Crystals',
 };
