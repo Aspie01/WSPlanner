@@ -12,6 +12,7 @@ const FILES = {
   buildings: 'data/buildings.json',
   research: 'data/research.json',
   troops: 'data/troops.json',
+  bear: 'data/bear.json',
 };
 
 let seed = null;

@@ -8,6 +8,7 @@ import { load, getState, update, subscribe } from './js/store.js';
 import { loadGameData, seedFor } from './js/gamedata.js';
 import { serverNow, fmtCountdown, offsetLabel } from './js/time.js';
 
+import bear from './js/views/bear.js';
 import dashboard from './js/views/dashboard.js';
 import vsduel from './js/views/vsduel.js';
 import calendar from './js/views/calendar.js';
@@ -19,7 +20,10 @@ import settings from './js/views/settings.js';
 import importView from './js/views/import.js';
 
 const ROUTES = {
-  '': dashboard,
+  // Bear Trap is the front door — it is what this app is mainly for.
+  '': bear,
+  bear,
+  dashboard,
   'vs-duel': vsduel,
   calendar,
   growth,

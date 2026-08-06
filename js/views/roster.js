@@ -13,7 +13,8 @@ const SORTS = {
 };
 
 function blankMember() {
-  return { id: uid('m'), name: '', rank: 'R1', power: 0, furnace: '', troop: 'infantry', rallyLead: false, tz: '', notes: '', squad: '' };
+  return { id: uid('m'), name: '', rank: 'R1', power: 0, furnace: '', troop: 'infantry', rallyLead: false,
+    leadHero: '', leadSkillPct: 0, tz: '', notes: '', squad: '' };
 }
 
 export default {
@@ -56,6 +57,7 @@ export default {
                 <th class="right"><button class="btn small" data-sort="power">Power</button></th>
                 <th><button class="btn small" data-sort="furnace">Furnace</button></th>
                 <th>Marches</th>
+                <th class="right">Lead skill</th>
                 <th>Squad</th>
                 <th>Timezone</th>
                 <th></th>
@@ -69,11 +71,12 @@ export default {
                   <td class="right tnum">${m.power ? fmtNum(m.power) : '—'}</td>
                   <td>${esc(m.furnace || '—')}</td>
                   <td>${esc(TROOPS[m.troop] || '—')}</td>
+                  <td class="right tnum">${m.leadSkillPct ? esc(String(m.leadSkillPct)) + '%' : '—'}</td>
                   <td>${esc(m.squad || '—')}</td>
                   <td class="faint small">${esc(m.tz || '—')}</td>
                   <td class="right"><button class="btn small" data-act="edit">Edit</button></td>
                 </tr>`).join('')
-              : '<tr><td colspan="8" class="empty">No members yet.</td></tr>'}
+              : '<tr><td colspan="9" class="empty">No members yet.</td></tr>'}
             </tbody>
           </table>
         </div>
@@ -157,7 +160,7 @@ export default {
 
     /* ---- CSV ---- */
     $('#exportCsv', root).addEventListener('click', () => {
-      const head = ['name', 'rank', 'power', 'furnace', 'troop', 'rallyLead', 'squad', 'tz', 'notes'];
+      const head = ['name', 'rank', 'power', 'furnace', 'troop', 'rallyLead', 'leadHero', 'leadSkillPct', 'squad', 'tz', 'notes'];
       const rows = state.roster.map((m) => head.map((h) => csvCell(m[h])).join(','));
       download('ws-roster.csv', [head.join(','), ...rows].join('\n'), 'text/csv');
     });
@@ -197,6 +200,11 @@ function openEditor(id, ctx) {
           ${Object.entries(TROOPS).map(([k, v]) => `<option value="${k}"${m.troop === k ? ' selected' : ''}>${v}</option>`).join('')}</select></div>
         <div class="field"><label>Squad</label><input type="text" data-mf="squad" value="${esc(m.squad || '')}" list="squadNames">
           <datalist id="squadNames">${(getState().squads || []).map((s) => `<option value="${esc(s.name)}"></option>`).join('')}</datalist></div>
+        <div class="field"><label>Lead hero (Bear Trap)</label>
+          <input type="text" data-mf="leadHero" value="${esc(m.leadHero || '')}" placeholder="Hero in slot one"></div>
+        <div class="field"><label>Their 1st Expedition Skill %</label>
+          <input type="text" data-mf="leadSkillPct" value="${m.leadSkillPct ? esc(String(m.leadSkillPct)) : ''}" placeholder="e.g. 25" inputmode="decimal">
+          <div class="hint">Ranks who should take the four rally buff slots.</div></div>
         <div class="field"><label>Timezone / usual hours</label><input type="text" data-mf="tz" value="${esc(m.tz || '')}" placeholder="${esc(offsetLabel(-new Date().getTimezoneOffset()))}, evenings"></div>
       </div>
       <div class="field"><label>Notes</label><input type="text" data-mf="notes" value="${esc(m.notes || '')}" placeholder="Hero teams, gear level, anything worth remembering"></div>
@@ -216,7 +224,7 @@ function openEditor(id, ctx) {
       const member = s.roster.find((x) => x.id === id);
       if (!member) return;
       if (field === 'rallyLead') member.rallyLead = ev.target.checked;
-      else if (field === 'power') member.power = parseNum(ev.target.value);
+      else if (field === 'power' || field === 'leadSkillPct') member[field] = parseNum(ev.target.value);
       else member[field] = ev.target.value;
     });
     if (field === 'power') ev.target.value = fmtNum(getState().roster.find((x) => x.id === id).power);
@@ -284,6 +292,8 @@ function importCsv(text) {
       member.furnace = get('furnace') || member.furnace;
       member.troop = Object.keys(TROOPS).includes(get('troop').toLowerCase()) ? get('troop').toLowerCase() : member.troop;
       member.rallyLead = /^(1|true|yes|y)$/i.test(get('rallylead')) || member.rallyLead;
+      member.leadHero = get('leadhero') || member.leadHero;
+      member.leadSkillPct = get('leadskillpct') ? parseNum(get('leadskillpct')) : member.leadSkillPct;
       member.squad = get('squad') || member.squad;
       member.tz = get('tz') || member.tz;
       member.notes = get('notes') || member.notes;

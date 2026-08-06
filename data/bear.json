@@ -1,0 +1,47 @@
+{
+  "$comment": "Bear Trap rally mechanics. The rules below are taken from community guides and drive every recommendation on the Bear Trap page. NO HERO STATS ARE SHIPPED — hero skill values are read off your own game screen, because they differ by hero level, star and gear and are exactly the kind of thing that goes stale.",
+  "mechanics": [
+    {
+      "id": "no_damage",
+      "title": "The Bear deals no damage",
+      "detail": "There is nothing to tank, so infantry and lancers earn their slot only if you have no marksmen left to send. Marksmen out-damage everything else.",
+      "confidence": "checked"
+    },
+    {
+      "id": "lead_all_skills",
+      "title": "A rally leader's three heroes all count",
+      "detail": "Every Expedition Skill on all three of the leader's heroes feeds the rally buff — up to nine skills with three mythic heroes. Slot order does not matter for the leader.",
+      "confidence": "checked"
+    },
+    {
+      "id": "first_four",
+      "title": "Only the first four joiners buff the rally",
+      "detail": "The first four players to join contribute their LEAD hero's 1st Expedition Skill and nothing else. Which hero sits in slot one is the entire decision for those four.",
+      "confidence": "checked"
+    },
+    {
+      "id": "late_joiners",
+      "title": "After the fourth joiner, heroes stop mattering",
+      "detail": "Later joiners add no buffs at all. Their heroes should simply be the highest level they own, because hero level raises how many troops the march carries.",
+      "confidence": "checked"
+    },
+    {
+      "id": "heroes_no_damage",
+      "title": "Heroes never damage the Bear themselves",
+      "detail": "Heroes only buff troops. A strong hero with a weak march is worth less than a modest hero carrying a full load of high-tier marksmen.",
+      "confidence": "checked"
+    }
+  ],
+  "skillTypes": [
+    { "key": "attack", "name": "Troop Attack up", "combat": true },
+    { "key": "damage", "name": "Troop Damage up", "combat": true },
+    { "key": "lethality", "name": "Troop Lethality up", "combat": true },
+    { "key": "defense", "name": "Troop Defence / Health up", "combat": false, "note": "The Bear deals no damage, so survivability skills add nothing here." },
+    { "key": "capacity", "name": "March / rally capacity up", "combat": false, "note": "No direct damage, but a bigger march carries more marksmen." },
+    { "key": "none", "name": "Something else / no combat effect", "combat": false }
+  ],
+  "suggestedHeroes": {
+    "note": "Names players commonly bring to Bear Trap rallies. UNVERIFIED and deliberately carrying no stats — add the ones you own and read their real skill values off your own hero screen.",
+    "names": ["Mia", "Jeronimo", "Bradley", "Hector", "Natalia", "Sergey", "Molly", "Bahiti", "Alonso", "Philly"]
+  }
+}

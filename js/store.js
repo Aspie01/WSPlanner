@@ -57,6 +57,8 @@ function defaultState() {
       updatedAt: null,
     },
     queue: [],
+    // Heroes the player owns, used by the Bear Trap planner.
+    heroes: [],
     vsDuel: {
       // Per duel day (1-6): free-text plan plus a personal point target.
       days: {},
@@ -142,7 +144,7 @@ export function migrate(stored) {
     ui: { ...base.ui, ...(stored.ui || {}) },
   };
 
-  for (const key of ['queue', 'events', 'roster', 'squads']) {
+  for (const key of ['queue', 'events', 'roster', 'squads', 'heroes']) {
     merged[key] = Array.isArray(stored[key]) ? stored[key] : base[key];
   }
   merged.gameDataOverrides = stored.gameDataOverrides && typeof stored.gameDataOverrides === 'object'
@@ -201,14 +203,14 @@ export function importPayload(payload, mode = 'merge') {
     return { replaced: true };
   }
 
-  const counts = { events: 0, roster: 0, squads: 0, queue: 0 };
+  const counts = { events: 0, roster: 0, squads: 0, queue: 0, heroes: 0 };
   update((s) => {
     if (payload.profile) {
       for (const k of ['alliance', 'state', 'serverOffsetMin']) {
         if (payload.profile[k] !== undefined && payload.profile[k] !== '') s.profile[k] = payload.profile[k];
       }
     }
-    for (const key of ['events', 'roster', 'squads', 'queue']) {
+    for (const key of ['events', 'roster', 'squads', 'queue', 'heroes']) {
       if (!Array.isArray(payload[key])) continue;
       const byId = new Map(s[key].map((item) => [item.id, item]));
       for (const incoming of payload[key]) {

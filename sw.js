@@ -4,7 +4,7 @@
 //
 // Bump CACHE whenever a release should force everyone onto new files.
 
-const CACHE = 'wsplanner-v1';
+const CACHE = 'wsplanner-v2';
 
 const ASSETS = [
   './',
@@ -17,6 +17,7 @@ const ASSETS = [
   'js/store.js',
   'js/share.js',
   'js/gamedata.js',
+  'js/views/bear.js',
   'js/views/dashboard.js',
   'js/views/vsduel.js',
   'js/views/calendar.js',
@@ -26,6 +27,7 @@ const ASSETS = [
   'js/views/gamedata.js',
   'js/views/settings.js',
   'js/views/import.js',
+  'data/bear.json',
   'data/vsduel.json',
   'data/events.json',
   'data/buildings.json',
