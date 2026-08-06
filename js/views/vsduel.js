@@ -1,7 +1,26 @@
 import { $, $$, esc, fmtInt, fmtNum, parseNum, parseDur, debounce } from '../util.js';
 import { getState, update } from '../store.js';
 import { gd, setOverride } from '../gamedata.js';
-import { vsDuelDayNumber, weekStart, toISODate, serverNow, DAY_SHORT } from '../time.js';
+import { vsDuelDayNumber, weekStart, toISODate, serverNow, nextOccurrences, DAY_SHORT } from '../time.js';
+
+/**
+ * Where the state is in its scoring week. The themed days below only pay out
+ * during State of Power, which comes round one week in four, so the page says
+ * plainly whether spending today actually scores.
+ */
+export function scoringWeek(events, offsetMin) {
+  const sop = events.find((e) => e.id === 'ev_sop');
+  if (!sop) return null;
+  const occ = nextOccurrences(sop, { offsetMin, count: 1 })[0];
+  if (!occ) return null;
+  const now = Date.now();
+  const active = occ.start.getTime() <= now && now < occ.end.getTime();
+  return {
+    active,
+    start: occ.start,
+    dayOfWeek: active ? Math.floor((now - occ.start.getTime()) / 86_400_000) + 1 : 0,
+  };
+}
 
 /** Points a day's calculator inputs add up to, given the current rates. */
 function dayPoints(day, calc) {
@@ -23,10 +42,11 @@ export default {
     const data = gd('vsDuel');
     const days = data?.days || [];
     if (!days.length) {
-      root.innerHTML = '<div class="card"><h1>VS Duel</h1><p class="muted">The VS Duel data file could not be loaded.</p></div>';
+      root.innerHTML = '<div class="card"><h1>Scoring Week</h1><p class="muted">The scoring-day data file could not be loaded.</p></div>';
       return;
     }
 
+    const sop = scoringWeek(state.events, serverOffsetMin);
     const todayNum = vsDuelDayNumber(serverOffsetMin);
     const weekIso = toISODate(serverNow(serverOffsetMin, weekStart(serverOffsetMin)));
     const selected = Number(ctx.query.get('day')) || todayNum || 1;
@@ -38,9 +58,21 @@ export default {
     const anyUnverified = (day.scoring || []).some((l) => l.verified === false);
 
     root.innerHTML = `
-      <h1>VS Duel</h1>
-      <p class="page-intro">The duel runs Monday to Saturday on server time. Each day scores a different activity,
-        so the whole game is banking the right things and spending them on the right day.</p>
+      <h1>Scoring Week</h1>
+      <p class="page-intro">Each day of the scoring week rewards a different activity, so the whole game is banking the
+        right things and spending them on the right day. In state ${esc(state.profile.state || '—')} that week is
+        <strong>State of Power</strong>, which comes round one week in four.</p>
+
+      ${sop ? (sop.active
+        ? `<div class="note" style="border-color:var(--good);background:color-mix(in srgb, var(--good) 9%, transparent)">
+             <strong>State of Power is running now — day ${sop.dayOfWeek} of 7.</strong>
+             What you spend today scores.
+           </div>`
+        : `<div class="note">
+             <strong>State of Power is not running.</strong> Speedups and gear you burn this week earn no event points —
+             bank them. Next one starts <span class="countdown tnum" data-cd="${sop.start.getTime()}">—</span>
+             (${esc(sop.start.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' }))}).
+           </div>`) : ''}
 
       <div class="btn-row" style="margin-bottom:14px">
         ${days.map((d) => `
@@ -49,7 +81,8 @@ export default {
           </a>`).join('')}
       </div>
 
-      ${todayNum === 0 ? '<div class="note">It is <strong>Sunday</strong> on server time — the duel is between weeks. Anything you spend today scores nothing, so bank it.</div>' : ''}
+      ${todayNum === 0 ? `<div class="note">It is <strong>Sunday</strong> on server time. The themed days below run Monday to
+        Saturday; Sunday is the seventh day of the event and has no theme in this data${sop?.active ? ' — check in game what it scores' : ''}.</div>` : ''}
 
       <div class="grid cols-2">
         <div>
@@ -57,7 +90,7 @@ export default {
             <div class="card-head">
               <h2>Day ${day.n} · ${esc(day.name)}</h2>
               <span class="spacer"></span>
-              ${day.n === todayNum ? '<span class="pill accent">today</span>' : ''}
+              ${day.n === todayNum ? (sop && !sop.active ? '<span class="pill">today&rsquo;s theme</span>' : '<span class="pill accent">today</span>') : ''}
             </div>
             <p class="muted" style="margin-top:0">${esc(day.summary)}</p>
 
@@ -71,7 +104,7 @@ export default {
                 </label>`;
               }).join('') || '<p class="muted small">Nothing listed.</p>'}
             </div>
-            <p class="faint small">Ticks reset each duel week (this week starts ${esc(weekIso)}).</p>
+            <p class="faint small">Ticks reset each week (this week starts ${esc(weekIso)}).</p>
 
             ${day.tips?.length ? `
               <h3 style="margin-top:16px">Worth knowing</h3>

@@ -1,5 +1,5 @@
 {
-  "$comment": "Seed data for the VS Duel (Alliance Duel) week. Day themes are stable across patches; POINT VALUES ARE NOT VERIFIED and should be checked in-game, then corrected under Game Data.",
+  "$comment": "Seed data for the six themed scoring days. In state 3574's rotation these apply to the State of Power week (one week in four) — confirm the day names against the in-game event page, since they are seeded from the general community pattern rather than that state's screen. POINT VALUES ARE NOT VERIFIED and should be checked in game, then corrected under Game Data.",
   "sourceNote": "Community-reported values, unverified. Correct them under Game Data > VS Duel.",
   "days": [
     {

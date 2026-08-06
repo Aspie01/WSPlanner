@@ -1,8 +1,9 @@
 import { $, $$, esc, uid, fmtDur, parseDur, toast } from '../util.js';
 import { getState, update } from '../store.js';
+import { seedFor } from '../gamedata.js';
 import {
   upcoming, nextOccurrences, occurrencesOnServerDate, fmtLocal, fmtServer, offsetLabel,
-  localOffsetMin, DAY_SHORT, WEEK_ORDER, toISODate, serverNow,
+  localOffsetMin, fromServerWall, DAY_SHORT, WEEK_ORDER, toISODate, serverNow,
 } from '../time.js';
 
 const KINDS = { alliance: 'Alliance', state: 'State / server', personal: 'Personal', daily: 'Daily' };
@@ -69,7 +70,8 @@ export default {
 
       <div class="card">
         <div class="card-head"><h2>Events</h2><span class="spacer"></span>
-          <button class="btn small primary" id="addEvent">New event</button></div>
+          <button class="btn small primary" id="addEvent">New event</button>
+          <button class="btn small" id="restoreSeed" title="Re-apply the schedule this app ships with">Restore starter schedule</button></div>
         <div id="eventList">${state.events.map((ev) => eventRow(ev, serverOffsetMin)).join('') || '<p class="empty">No events.</p>'}</div>
       </div>
     `;
@@ -85,6 +87,26 @@ export default {
       }, 0);
     });
 
+    // Saved data wins over the shipped seed, so a device that installed before
+    // a schedule correction would never see it without this.
+    $('#restoreSeed', root).addEventListener('click', () => {
+      const seeded = seedFor('events')?.events ?? [];
+      if (!seeded.length) return toast('The starter schedule could not be loaded.');
+      if (!confirm(
+        `Re-apply the ${seeded.length} starter events?\n\n`
+        + 'Events with the same name are overwritten, so any times you changed on those are lost. '
+        + 'Events you created yourself are kept.',
+      )) return;
+
+      update((s) => {
+        const byId = new Map(s.events.map((e) => [e.id, e]));
+        for (const e of seeded) byId.set(e.id, { ...e, enabled: e.enabled !== false });
+        s.events = Array.from(byId.values());
+      });
+      toast('Starter schedule restored');
+      ctx.rerender();
+    });
+
     bindEditors(root, ctx);
   },
 };
@@ -92,24 +114,45 @@ export default {
 function weekGrid(events, offsetMin) {
   const sNow = serverNow(offsetMin);
   const monday = new Date(Date.UTC(sNow.getUTCFullYear(), sNow.getUTCMonth(), sNow.getUTCDate() - ((sNow.getUTCDay() + 6) % 7)));
+  const DAY_MS = 86400_000;
   const rows = [];
+  const live = events.filter((e) => e.enabled !== false);
+
+  // Gather occurrences starting anywhere from a fortnight back, so a week-long
+  // event that began before Monday still shows on the days it is running.
+  const all = [];
+  for (let i = -14; i < 8; i++) {
+    const d = new Date(monday.getTime() + i * DAY_MS);
+    for (const e of live) all.push(...occurrencesOnServerDate(e, d, offsetMin));
+  }
+
+  const todayIso = toISODate(sNow);
 
   for (let i = 0; i < 7; i++) {
-    const dayServer = new Date(monday.getTime() + i * 86400_000);
+    const dayServer = new Date(monday.getTime() + i * DAY_MS);
     const iso = toISODate(dayServer);
-    const items = events
-      .filter((e) => e.enabled !== false)
-      .flatMap((e) => occurrencesOnServerDate(e, dayServer, offsetMin))
+    // Real instants bounding this server-time day.
+    const dayStart = fromServerWall(dayServer.getUTCFullYear(), dayServer.getUTCMonth(), dayServer.getUTCDate(), 0, 0, offsetMin).getTime();
+    const dayEnd = dayStart + DAY_MS;
+
+    const items = all
+      // A zero-length event still occupies the instant it fires on.
+      .filter((o) => o.start.getTime() < dayEnd && Math.max(o.end.getTime(), o.start.getTime() + 1) > dayStart)
       .sort((a, b) => a.start - b.start);
 
-    const todayIso = toISODate(sNow);
     const isToday = todayIso === iso;
     const isPast = iso < todayIso;
     rows.push(`
       <tr${isToday ? ' style="background:var(--bg-elev-2)"' : ''}${isPast ? ' style="opacity:.5"' : ''}>
         <td><strong>${DAY_SHORT[dayServer.getUTCDay()]}</strong>${isToday ? ' <span class="pill accent">now</span>' : ''}</td>
         <td class="wrap">${items.length
-          ? items.map((o) => `<span class="pill ${o.event.kind === 'alliance' ? 'accent' : ''}">${esc(fmtServer(o.start, offsetMin, { withDate: false }))} ${esc(o.event.name)}</span>`).join(' ')
+          ? items.map((o) => {
+            const startsToday = o.start.getTime() >= dayStart;
+            // Events carried over from an earlier day show a marker, not a
+            // start time that is not on this day.
+            const when = startsToday ? esc(fmtServer(o.start, offsetMin, { withDate: false })) : '⋯';
+            return `<span class="pill ${o.event.kind === 'alliance' ? 'accent' : ''}"${startsToday ? '' : ' style="opacity:.65"'}>${when} ${esc(o.event.name)}</span>`;
+          }).join(' ')
           : '<span class="faint small">—</span>'}</td>
       </tr>`);
   }

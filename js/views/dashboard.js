@@ -3,6 +3,7 @@ import { getState, SPEEDUP_KEYS } from '../store.js';
 import { gd } from '../gamedata.js';
 import { upcoming, fmtLocal, fmtServer, vsDuelDayNumber, offsetLabel, localOffsetMin } from '../time.js';
 import { queueTotals } from './growth.js';
+import { scoringWeek } from './vsduel.js';
 
 function greeting(name) {
   const h = new Date().getHours();
@@ -21,6 +22,7 @@ export default {
     const next = upcoming(state.events, { offsetMin: serverOffsetMin, limit: 6, perEvent: 1 });
     const totals = queueTotals(state.queue);
     const localOff = localOffsetMin();
+    const sop = scoringWeek(state.events, serverOffsetMin);
 
     const speedupTotal = SPEEDUP_KEYS.reduce((sum, k) => sum + (Number(state.inventory.speedups[k]) || 0), 0);
 
@@ -59,17 +61,22 @@ export default {
         <div>
           <div class="card">
             <div class="card-head">
-              <h2>Today &middot; VS Duel</h2>
+              <h2>Today &middot; Scoring Week</h2>
               <span class="spacer"></span>
               <a class="btn small" href="#/vs-duel">Open</a>
             </div>
+            ${sop && !sop.active ? `
+              <p class="muted small" style="margin-top:0">
+                <strong>Not a scoring week.</strong> Nothing you spend now earns event points — bank it.
+                State of Power starts <span class="countdown tnum" data-cd="${sop.start.getTime()}">—</span>.
+              </p>` : ''}
             ${today ? `
-              <div class="day-card today">
+              <div class="day-card${sop?.active ? ' today' : ''}" ${sop && !sop.active ? 'style="opacity:.6"' : ''}>
                 <h3><span class="dnum">Day ${today.n}</span> ${esc(today.name)}</h3>
                 <p class="small muted" style="margin:6px 0 0">${esc(today.summary)}</p>
                 <ul>${today.bank.slice(0, 3).map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
               </div>
-            ` : `<p class="muted small">It is Sunday on server time — no duel day today. Use it to bank stamina, speedups and gear for tomorrow's ${esc(duelData?.days?.[0]?.name || 'Day 1')}.</p>`}
+            ` : `<p class="muted small">It is Sunday on server time — the themed days run Monday to Saturday. Use today to bank stamina, speedups and gear for ${esc(duelData?.days?.[0]?.name || 'Day 1')}.</p>`}
           </div>
 
           <div class="card">
