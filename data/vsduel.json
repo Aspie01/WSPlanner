@@ -1,124 +1,147 @@
 {
-  "$comment": "Seed data for the six themed scoring days. In state 3574's rotation these apply to the State of Power week (one week in four) — confirm the day names against the in-game event page, since they are seeded from the general community pattern rather than that state's screen. POINT VALUES ARE NOT VERIFIED and should be checked in game, then corrected under Game Data.",
-  "sourceNote": "Community-reported values, unverified. Correct them under Game Data > VS Duel.",
+  "$comment": "State of Power (SvS) preparation phase. Day names, day order and point values are taken from community reference sites (whiteoutdata.com, whiteoutsurvival.wiki), which agree with each other on the structure: five scoring days, then a sixth day when the winner is declared. Point values were only found on one of those sites, so they are still marked unverified — check one action in game and correct it under Game Data.",
+  "sourceNote": "Day names and structure cross-checked across two community references. Point values from a single source, unverified.",
+  "phaseNote": "Days 1–5 score. Day 6 (Saturday) declares the preparation winner at around 10:00 UTC — the winning state attacks, and the battle happens in the losing state's territory.",
   "days": [
     {
       "n": 1,
-      "key": "radar",
-      "name": "Radar Training",
-      "summary": "Stamina, radar missions and hero progression. The cheapest day to score if you bank stamina and hero shards through the weekend.",
+      "key": "construction",
+      "name": "City Construction",
+      "summary": "Fire Crystals, construction and research speedups, and Chief Charms. Have a Fire Crystal upgrade queued before the day starts so you can spend into it.",
       "bank": [
-        "Stamina (do not spend it Sunday — cap out and hold)",
-        "Hero shards and Widgets / recruitment tickets",
-        "Exploration and Intel (radar) missions left unclaimed"
+        "Fire Crystals, Fire Crystal Shards and Refined Fire Crystals",
+        "Construction, research and training speedups",
+        "Chief Charm materials (Charm Guides and Designs)"
       ],
       "scoring": [
-        { "id": "stamina", "label": "Stamina spent on radar / intel missions", "unit": "stamina", "points": 30, "verified": false },
-        { "id": "heroShard", "label": "Hero shard used", "unit": "shard", "points": 50, "verified": false },
-        { "id": "heroXp", "label": "Hero EXP used", "unit": "1,000 EXP", "points": 10, "verified": false }
+        { "id": "refined", "label": "Refined Fire Crystal used", "unit": "crystal", "points": 30000, "verified": false },
+        { "id": "fc_build", "label": "Fire Crystal used on a building upgrade", "unit": "crystal", "points": 2000, "verified": false },
+        { "id": "fc_shard", "label": "Fire Crystal Shard used on research", "unit": "shard", "points": 1000, "verified": false },
+        { "id": "charm", "label": "Chief Charm score increase", "unit": "point of score", "points": 70, "verified": false },
+        { "id": "speedup", "label": "Speedup used", "unit": "minute", "points": 30, "verified": false }
       ],
       "tips": [
-        "Finish Sunday with full stamina and let it overflow into stored stamina items.",
-        "Hold Fire Crystal hero shards for Day 5 if your alliance is pushing Total Mobilization instead."
+        "Refined Fire Crystals are worth roughly fifteen times a plain Fire Crystal here — save them for this day.",
+        "Points come from what you spend, so queue the upgrade first and rush it during the day."
       ]
     },
     {
       "n": 2,
-      "key": "construction",
-      "name": "Base Expansion",
-      "summary": "Construction speedups and building power. Start a long upgrade Sunday night, then finish it with speedups on Monday.",
+      "key": "basicskills",
+      "name": "Basic Skills Up",
+      "summary": "Fire Crystals again, plus hero shards, the Lucky Wheel and gathering. A good day if you have been sitting on recruitment tickets.",
       "bank": [
-        "Construction speedups and General speedups",
-        "One long building upgrade queued and ready to rush",
-        "Fire Crystals / Refined Fire Crystals for Furnace levels"
+        "Fire Crystals and Refined Fire Crystals not spent on Day 1",
+        "Hero shards for ascensions",
+        "Lucky Wheel spins",
+        "Marches ready to send gathering"
       ],
       "scoring": [
-        { "id": "buildMin", "label": "Construction speedup used", "unit": "minute", "points": 30, "verified": false },
-        { "id": "fireCrystal", "label": "Fire Crystal used", "unit": "crystal", "points": 300, "verified": false },
-        { "id": "power", "label": "Building power gained", "unit": "power", "points": 1, "verified": false }
+        { "id": "refined", "label": "Refined Fire Crystal used", "unit": "crystal", "points": 30000, "verified": false },
+        { "id": "wheel", "label": "Lucky Wheel play", "unit": "spin", "points": 8000, "verified": false },
+        { "id": "ascend_myth", "label": "Hero shard ascension — Mythic", "unit": "ascension", "points": 3040, "verified": false },
+        { "id": "ascend_rare", "label": "Hero shard ascension — Rare", "unit": "ascension", "points": 350, "verified": false },
+        { "id": "fc_build", "label": "Fire Crystal used on a building upgrade", "unit": "crystal", "points": 2000, "verified": false },
+        { "id": "fc_shard", "label": "Fire Crystal Shard used on research", "unit": "shard", "points": 1000, "verified": false },
+        { "id": "speedup", "label": "Speedup used", "unit": "minute", "points": 30, "verified": false },
+        { "id": "gather", "label": "Resource gathered from the wilderness", "unit": "resource", "points": 2, "verified": false }
       ],
       "tips": [
-        "Points come from the speedups you *use*, so queue the upgrade first and rush it during the day.",
-        "Do not let a big upgrade complete on its own overnight — that power lands outside the scoring window."
+        "Epic ascensions sit between the Rare and Mythic values — check yours and correct the rates.",
+        "Gathering is only 2 points a unit, but full marches out all day add up for free."
       ]
     },
     {
       "n": 3,
-      "key": "research",
-      "name": "Age of Science",
-      "summary": "Research speedups and research power. Same trick as Day 2 — have an expensive research queued and waiting.",
+      "key": "beastslay",
+      "name": "Beast Slay",
+      "summary": "Pets and beast hunting. The one day that rewards stamina rather than stockpiled materials, so go in with stamina capped.",
       "bank": [
-        "Research speedups and General speedups",
-        "A long research queued the night before",
-        "Fire Crystals if your alliance counts them here"
+        "Stamina — cap it out the night before and hold stamina items",
+        "Wild Marks for pet refinement",
+        "Pet advancement materials",
+        "Lucky Wheel spins"
       ],
       "scoring": [
-        { "id": "researchMin", "label": "Research speedup used", "unit": "minute", "points": 30, "verified": false },
-        { "id": "power", "label": "Research power gained", "unit": "power", "points": 1, "verified": false }
+        { "id": "polar", "label": "Polar Terror rally hunt", "unit": "hunt", "points": 30000, "verified": false },
+        { "id": "pet_refine_hi", "label": "Pet refinement with Wild Marks — best tier", "unit": "refinement", "points": 15000, "verified": false },
+        { "id": "beast", "label": "Beast defeated (levels 1–30)", "unit": "beast", "points": 9000, "verified": false },
+        { "id": "wheel", "label": "Lucky Wheel play", "unit": "spin", "points": 8000, "verified": false },
+        { "id": "pet_refine_lo", "label": "Pet refinement with Wild Marks — lowest tier", "unit": "refinement", "points": 1150, "verified": false },
+        { "id": "charm", "label": "Chief Charm score increase", "unit": "point of score", "points": 70, "verified": false },
+        { "id": "pet_adv", "label": "Pet advancement score increase", "unit": "point of score", "points": 50, "verified": false }
       ],
       "tips": [
-        "Growth tree research is usually cheaper per point than Battle tree research.",
-        "If you only have General speedups, spend them on whichever of Day 2 / 3 / 4 your alliance most needs."
+        "Higher-level beasts score more (roughly 9,000 up to 12,000) — hunt the biggest ones your stamina allows.",
+        "Polar Terror rallies are the single best action of the day if your alliance will run them."
       ]
     },
     {
       "n": 4,
-      "key": "training",
-      "name": "Train Troops",
-      "summary": "Training speedups and troop promotion. Usually the easiest day to hit a high personal score.",
+      "key": "herodev",
+      "name": "Hero Development",
+      "summary": "Hero gear, Mithril and troop training. Mithril is the heaviest single item in the whole preparation phase.",
       "bank": [
-        "Training speedups and General speedups",
-        "A full training queue started before reset",
-        "Resources for troop promotion"
+        "Mithril — do not spend any of it before this day",
+        "Essence Stones and Exclusive Gear Widgets",
+        "Chief Charm materials",
+        "A full troop training queue ready to run"
       ],
       "scoring": [
-        { "id": "trainMin", "label": "Training speedup used", "unit": "minute", "points": 30, "verified": false },
-        { "id": "promote", "label": "Troop promoted", "unit": "troop", "points": 0, "verified": false }
+        { "id": "mithril", "label": "Mithril used", "unit": "mithril", "points": 40000, "verified": false },
+        { "id": "widget", "label": "Exclusive Gear Widget used", "unit": "widget", "points": 8000, "verified": false },
+        { "id": "essence", "label": "Hero Gear Essence Stone used", "unit": "stone", "points": 4000, "verified": false },
+        { "id": "train_hi", "label": "Troop trained — highest tier", "unit": "troop", "points": 75, "verified": false },
+        { "id": "charm", "label": "Chief Charm score increase", "unit": "point of score", "points": 70, "verified": false },
+        { "id": "train_lo", "label": "Troop trained — tier 1", "unit": "troop", "points": 3, "verified": false }
       ],
       "tips": [
-        "Promoting existing troops usually scores far better per resource than training new ones.",
-        "Keep your troop queue full and rush it repeatedly rather than in one batch."
+        "Mithril at 40,000 a piece dwarfs everything else — hold every scrap of it for today.",
+        "Troop points scale with tier (roughly 3 points at T1 up to 75 at T11), so train the highest tier you can."
       ]
     },
     {
       "n": 5,
-      "key": "mobilization",
-      "name": "Total Mobilization",
-      "summary": "Everything counts — speedups of all kinds, hero gear, chief gear and chief charms. The heaviest scoring day, and the one worth saving for.",
+      "key": "powerboost",
+      "name": "Power Boost",
+      "summary": "A catch-all final scoring day: pets, hero gear, Mithril, Chief Gear and Fire Crystals all count. Dump whatever survived the week.",
       "bank": [
-        "Any speedups left over from Days 2–4",
-        "Hero gear plates and Essence Stones",
-        "Chief Gear materials and Chief Charm materials",
-        "Fire Crystals and Refined Fire Crystals"
+        "Anything left over from Days 1–4",
+        "Chief Gear materials",
+        "Mithril, Essence Stones and Widgets you could not spend on Day 4",
+        "Remaining speedups"
       ],
       "scoring": [
-        { "id": "anyMin", "label": "Any speedup used", "unit": "minute", "points": 30, "verified": false },
-        { "id": "chiefGear", "label": "Chief Gear material used", "unit": "material", "points": 0, "verified": false },
-        { "id": "charm", "label": "Chief Charm material used", "unit": "material", "points": 0, "verified": false },
-        { "id": "heroGear", "label": "Hero Gear upgrade", "unit": "upgrade", "points": 0, "verified": false }
+        { "id": "mithril", "label": "Mithril used", "unit": "mithril", "points": 40000, "verified": false },
+        { "id": "refined", "label": "Refined Fire Crystal used", "unit": "crystal", "points": 30000, "verified": false },
+        { "id": "pet_refine", "label": "Pet refinement — best tier", "unit": "refinement", "points": 15000, "verified": false },
+        { "id": "widget", "label": "Exclusive Gear Widget used", "unit": "widget", "points": 8000, "verified": false },
+        { "id": "essence", "label": "Hero Gear Essence Stone used", "unit": "stone", "points": 4000, "verified": false },
+        { "id": "fc_shard", "label": "Fire Crystal Shard used on research", "unit": "shard", "points": 1000, "verified": false },
+        { "id": "pet_adv", "label": "Pet advancement score increase", "unit": "point of score", "points": 50, "verified": false },
+        { "id": "chief_gear", "label": "Chief Gear score increase", "unit": "point of score", "points": 36, "verified": false },
+        { "id": "speedup", "label": "Speedup used", "unit": "minute", "points": 30, "verified": false }
       ],
       "tips": [
-        "Chief Gear and Chief Charm upgrades are typically the highest-value single actions of the whole week.",
-        "Ask your R4/R5 whether the alliance is contesting this day before you dump everything into it."
+        "This is the safety net for anything you mistimed earlier in the week.",
+        "Ask your R4/R5 whether the state is close on points before emptying your bank into it."
       ]
     },
     {
       "n": 6,
-      "key": "enemybuster",
-      "name": "Enemy Buster",
-      "summary": "Killing enemy troops, rallies and healing. Points come from combat, so this day is coordinated, not solo.",
+      "key": "results",
+      "name": "Results declared",
+      "resultsOnly": true,
+      "summary": "No scoring. The preparation winner is announced around 10:00 UTC; that state becomes the attacker and the battle takes place in the losing state's territory.",
       "bank": [
-        "Healing speedups and healing resources",
-        "Full march queues and rally capacity",
-        "Hero stamina / rally slots for your rally leads"
+        "Healing speedups and healing resources for the battle phase",
+        "Shields, if you would rather sit the battle out",
+        "Full marches and rally slots ready"
       ],
-      "scoring": [
-        { "id": "kills", "label": "Enemy troop killed", "unit": "troop", "points": 0, "verified": false },
-        { "id": "healMin", "label": "Healing speedup used", "unit": "minute", "points": 30, "verified": false }
-      ],
+      "scoring": [],
       "tips": [
-        "Follow your alliance's call — solo attacking on this day usually just feeds the other side points.",
-        "Heal during the scoring window, not after it closes."
+        "Nothing you spend today earns preparation points — save it for the next cycle or the battle.",
+        "Check whether your state won before committing troops; being the defender changes the plan."
       ]
     }
   ]

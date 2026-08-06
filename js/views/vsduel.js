@@ -81,8 +81,8 @@ export default {
           </a>`).join('')}
       </div>
 
-      ${todayNum === 0 ? `<div class="note">It is <strong>Sunday</strong> on server time. The themed days below run Monday to
-        Saturday; Sunday is the seventh day of the event and has no theme in this data${sop?.active ? ' — check in game what it scores' : ''}.</div>` : ''}
+      ${todayNum === 0 ? `<div class="note">It is <strong>Sunday</strong> on server time — the day after the preparation
+        phase closes. ${sop?.active ? 'This is the battle phase, fought in the losing state\'s territory.' : 'Nothing scores today.'}</div>` : ''}
 
       <div class="grid cols-2">
         <div>
@@ -128,13 +128,16 @@ export default {
 
         <div>
           <div class="card">
-            <div class="card-head"><h2>Points estimate</h2><span class="spacer"></span>
-              <button class="btn small" id="clearCalc">Clear</button></div>
+            <div class="card-head"><h2>${day.resultsOnly ? 'No scoring today' : 'Points estimate'}</h2><span class="spacer"></span>
+              ${day.resultsOnly ? '' : '<button class="btn small" id="clearCalc">Clear</button>'}</div>
+
+            ${day.resultsOnly ? `<p class="muted small" style="margin-top:0">${esc(data.phaseNote || '')}</p>` : ''}
 
             ${anyUnverified ? `<div class="note"><strong>These rates are unverified.</strong>
               They are community figures that change with patches. Check one action in-game, then correct the rate below —
               it saves to your device and travels with your export.</div>` : ''}
 
+            ${day.resultsOnly ? '' : `
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Action</th><th class="right">Points each</th><th class="right" style="width:110px">How many</th></tr></thead>
@@ -163,7 +166,7 @@ export default {
               </div>
             </div>
             <p class="faint small" style="margin-bottom:0">Speedup rows take a duration —
-              type <code>3d 4h</code> or <code>1440</code> and it converts to minutes.</p>
+              type <code>3d 4h</code> or <code>1440</code> and it converts to minutes.</p>`}
           </div>
 
           <div class="card">
@@ -178,8 +181,8 @@ export default {
                     return `<tr>
                       <td><a href="#/vs-duel?day=${d.n}">${DAY_SHORT[d.n]} · ${esc(d.name)}</a></td>
                       <td class="wrap faint small">${esc((d.bank || [])[0] || '')}</td>
-                      <td class="right tnum">${t ? fmtNum(t) : '—'}</td>
-                      <td class="right tnum ${t && e >= t ? 'countdown live' : ''}">${e ? fmtNum(e) : '—'}</td>
+                      <td class="right tnum">${d.resultsOnly ? '<span class="faint">n/a</span>' : (t ? fmtNum(t) : '—')}</td>
+                      <td class="right tnum ${t && e >= t ? 'countdown live' : ''}">${d.resultsOnly ? '<span class="faint">no scoring</span>' : (e ? fmtNum(e) : '—')}</td>
                     </tr>`;
                   }).join('')}
                 </tbody>
@@ -244,7 +247,7 @@ export default {
       });
     }
 
-    $('#clearCalc', root).addEventListener('click', () => {
+    $('#clearCalc', root)?.addEventListener('click', () => {
       update((s) => {
         for (const key of Object.keys(s.vsDuel.calc || {})) {
           if (key.startsWith(`${day.n}:`)) delete s.vsDuel.calc[key];
@@ -254,10 +257,12 @@ export default {
     });
 
     function recompute() {
+      const totalEl = $('#calcTotal', root);
+      if (!totalEl) return; // results day has no calculator
       const s = getState();
       const { total: sum } = dayPoints(day, s.vsDuel.calc || {});
       const tgt = Number(s.vsDuel.days[day.n]?.target) || 0;
-      $('#calcTotal', root).textContent = fmtInt(sum);
+      totalEl.textContent = fmtInt(sum);
       $('#calcPct', root).textContent = tgt ? `${Math.round((sum / tgt) * 100)}%` : '—';
     }
   },

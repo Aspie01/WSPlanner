@@ -76,7 +76,7 @@ export default {
                 <p class="small muted" style="margin:6px 0 0">${esc(today.summary)}</p>
                 <ul>${today.bank.slice(0, 3).map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
               </div>
-            ` : `<p class="muted small">It is Sunday on server time — the themed days run Monday to Saturday. Use today to bank stamina, speedups and gear for ${esc(duelData?.days?.[0]?.name || 'Day 1')}.</p>`}
+            ` : `<p class="muted small">It is Sunday on server time. The scoring days run Monday to Friday, with results declared Saturday. Use today to bank for ${esc(duelData?.days?.[0]?.name || 'Day 1')}.</p>`}
           </div>
 
           <div class="card">
