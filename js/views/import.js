@@ -8,6 +8,7 @@ function summarize(payload) {
   if (payload.events?.length) bits.push(`${payload.events.length} calendar event${payload.events.length === 1 ? '' : 's'}`);
   if (payload.roster?.length) bits.push(`${payload.roster.length} roster member${payload.roster.length === 1 ? '' : 's'}`);
   if (payload.squads?.length) bits.push(`${payload.squads.length} squad${payload.squads.length === 1 ? '' : 's'}`);
+  if (payload.heroes?.length) bits.push(`${payload.heroes.length} hero${payload.heroes.length === 1 ? '' : 'es'}`);
   if (payload.queue?.length) bits.push(`${payload.queue.length} growth step${payload.queue.length === 1 ? '' : 's'}`);
   if (payload.gameDataOverrides && Object.keys(payload.gameDataOverrides).length) {
     bits.push(`edits to ${Object.keys(payload.gameDataOverrides).join(', ')} data`);

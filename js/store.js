@@ -180,6 +180,13 @@ export function exportPayload(scope = 'all') {
       squads: state.squads,
     };
   }
+  if (scope === 'heroes') {
+    return {
+      ...meta,
+      profile: { alliance: state.profile.alliance },
+      heroes: state.heroes,
+    };
+  }
   if (scope === 'schedule') {
     return {
       ...meta,

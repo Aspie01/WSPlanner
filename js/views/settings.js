@@ -6,6 +6,7 @@ import { offsetLabel, localOffsetMin } from '../time.js';
 const SCOPES = {
   schedule: 'Event schedule only — smallest, best for a share link',
   alliance: 'Schedule + roster + squads — what an alliance needs',
+  heroes: 'Your heroes only — hand your Bear Trap hero list to someone else',
   all: 'Everything, including your own plan and resources',
 };
 
